@@ -419,6 +419,11 @@
               <FilePath>..\Core\Src\rtconfig.h</FilePath>
             </File>
             <File>
+              <FileName>app_config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Core\Inc\app_config.h</FilePath>
+            </File>
+            <File>
               <FileName>example_01_thread.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\example_01_thread.c</FilePath>

@@ -19,7 +19,7 @@ static void SystemClock_Config(void);
  * Please modify RT_HEAP_SIZE if you enable RT_USING_HEAP
  * the RT_HEAP_SIZE max value = (sram size - ZI size), 2048 means 2048*4 bytes
  */
-#define RT_HEAP_SIZE 2048
+#define RT_HEAP_SIZE (5*1024)
 
 static uint32_t rt_heap[RT_HEAP_SIZE];
 RT_WEAK void *rt_heap_begin_get(void)
@@ -69,7 +69,7 @@ void rt_hw_board_init(void)
     
     /*  硬件BSP初始化   */
     MX_GPIO_Init();
-    MX_USART1_UART_Init();
+  
     
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
 #ifdef RT_USING_COMPONENTS_INIT
@@ -106,15 +106,34 @@ void SysTick_Handler(void)
 
 static int uart_init(void)
 {
-#error "Please implement the code according to your chip"
+    MX_USART1_UART_Init();
     return 0;
 }
 INIT_BOARD_EXPORT(uart_init);
 
 /* For console print */
+/**
+*这个串口打印函数需要自己实现
+*/
 void rt_hw_console_output(const char *str)
 {
-#error "Please implement the code according to your chip"
+    extern UART_HandleTypeDef huart1;
+    
+    /* 换行转化为'\r''\n' 格式 */
+    uint8_t t = '\r';
+    
+    rt_enter_critical();
+    while(*str != '\0') 
+    {
+        if(*str=='\n')
+        {
+            HAL_UART_Transmit(&huart1,&t,1,1000);
+        }
+        HAL_UART_Transmit(&huart1,(uint8_t *)(str++),1,1000);
+    }
+    
+    rt_exit_critical();
+    
 }
 
 #endif

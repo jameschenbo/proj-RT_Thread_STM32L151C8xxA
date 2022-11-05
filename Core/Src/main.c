@@ -24,6 +24,10 @@
 extern void example_01_create_static_thread(void);
 #endif
 
+#ifdef EXA_USING_CREATE_DYNAMIC_THREAD
+void example_01_create_dynamic_thread(void);
+#endif
+
 
 /**
   * @brief  这里是main线程了 
@@ -33,6 +37,10 @@ int main(void)
 {
 #ifdef EXA_USING_CREATE_STATIC_THREAD
     example_01_create_static_thread();
+#endif  
+    
+#ifdef EXA_USING_CREATE_DYNAMIC_THREAD
+    example_01_create_dynamic_thread();
 #endif    
  
 }
