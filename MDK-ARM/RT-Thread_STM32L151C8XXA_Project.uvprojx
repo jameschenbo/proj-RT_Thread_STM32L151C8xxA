@@ -428,6 +428,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\example_01_thread.c</FilePath>
             </File>
+            <File>
+              <FileName>example_02_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\example_02_queue.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -28,7 +28,12 @@ extern void example_01_create_static_thread(void);
 void example_01_create_dynamic_thread(void);
 #endif
 
-
+#ifdef EXA_USING_CREATE_SUSPEND_THREAD
+void example_01_create_threads(void);
+#endif
+#ifdef EXA_USING_CREATE_QUEUE
+void example_02_create_message_queue(void);
+#endif
 /**
   * @brief  这里是main线程了 
   * @retval int
@@ -41,8 +46,15 @@ int main(void)
     
 #ifdef EXA_USING_CREATE_DYNAMIC_THREAD
     example_01_create_dynamic_thread();
+#endif   
+
+#ifdef EXA_USING_CREATE_SUSPEND_THREAD
+    example_01_create_threads();
 #endif    
- 
+    
+#ifdef EXA_USING_CREATE_QUEUE
+    example_02_create_message_queue();
+#endif
 }
 
 
